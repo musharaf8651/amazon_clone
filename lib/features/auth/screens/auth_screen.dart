@@ -2,6 +2,7 @@ import 'package:amazon_clone/constants/Global_variables.dart';
 import 'package:amazon_clone/features/auth/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:amazon_clone/features/auth/widgets/custom_text_form.dart';
+import 'package:amazon_clone/features/auth/screens/services/auth_service.dart';
 
 enum Auth {
   signin,
@@ -20,9 +21,18 @@ class _AuthScreenState extends State<AuthScreen> {
   Auth _auth = Auth.signup;
   final _signupFormKey = GlobalKey<FormState>();
   final _signinFormKey = GlobalKey<FormState>();
+  final AuthService authService = AuthService();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
+
+  void signUpUser() {
+    authService.signupUser(
+        context: context,
+        email: _emailController.text,
+        password: _passwordController.text,
+        name: _nameController.text);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +104,11 @@ class _AuthScreenState extends State<AuthScreen> {
                         const SizedBox(
                           height: 20,
                         ),
-                        CustomButton(buttonText: 'Signup', onTap: () {})
+                        CustomButton(
+                            buttonText: 'Signup',
+                            onTap: () {
+                              signUpUser();
+                            })
                       ],
                     ),
                   ),

@@ -9,6 +9,7 @@ const PORT=3000;
 const DB = 'mongodb+srv://blackrose:Parwez123@cluster0.ihzeetn.mongodb.net/?retryWrites=true&w=majority';
 //MIDDLEWARE
 //MIDDLEARE ACTS AS A MIDDLEMAN BETWEEN CLIENT AND SERVER 
+app.use(express.json());
 app.use(authRouter);
 
 //CONNECTIONS TO DATABSE
